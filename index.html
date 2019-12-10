@@ -8,17 +8,17 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <title>My Projects</title>
 </head>
-    
+
 <body>
     <div class="container mt-5">
         <div class="row">
             <div class="col-3"></div>
             <div class="col-6">
+
                 <form action="#">
                     <div class="form-group">
-                        <select id="chooseRecipe" class="form-control">
-                            <option value="1">French creps</option>
-                            <option value="2">Avacodo Shack(Toek Kalok)</option>
+                        <select id="recipe" class="form-control">
+                            <option value="" disabled selected>choose recipe...</option>
                         </select>
                     </div>
                 </form>
@@ -30,35 +30,46 @@
     <div class="container mt-3">
         <div class="row" id="result">
 
-        </div>         
-        
+        </div>
+
     </div>
-    
-    <div class="container mt-3">
+
+    <div class="container mt-5">
         <div class="row">
-           <div class="col-3"></div>
-           <div class="col-6">
-            <ul class="pagination">
-                <h4 class="mr-4">Number of persons</h4>
-                <li class="page-item"><a class="page-link" href="#">-</a></li>      
-                <li class="page-item"><a class="page-link" href="#" id="limitNumber">0</a></li>   
-                <li class="page-item"><a class="page-link" href="#">+</a></li>
-              </ul>
-           </div>
-           <div class="col-3"></div> 
+            <div class="col-4"></div>
+            <div class="col-4">
+                <div class="input-group mb-3">
+                    <h4 class="mr-3">Number of persons</h4>
+                    <div class="input-group-prepend">
+                        <button class="btn btn-primary" id="previous" type="button">-</button>
+                    </div>
+                    <input type="number" class="form-control text-center" id="number" disabled value="0" placeholder="">
+                    <div class="input-group-append">
+                        <button class="btn btn-success" id="add" type="submit">+</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-4"></div>
         </div>
     </div>
 
+
     <div class="container">
         <div class="row">
-            <div class="col-4" >
+            <div class="col-4">
+                <h5 class="center">Ingredients</h5>
+                <br>
                 <table class="table" id="ingredient">
 
                 </table>
 
             </div>
-            <div class="col-4"></div>
-            <div class="col-4"></div>
+            <div class="col-4">
+                <hr />
+            </div>
+            <div class="col-4" id="step">
+                <h5 class="center">Instructions</h5>
+            </div>
         </div>
     </div>
 

@@ -1,113 +1,69 @@
-$(document).ready(function () {
-    $('#chooseRecipe').on('change', function(){
-        var avocado = $('#chooseRecipe').val();
-        choose(avocado);
-    });
-    $('#chooseRecipe').on('change', function(){
-        var creps = $('#chooseRecipe').val();
-        choose(creps);
+$(document).ready(function(){
+    requestApiName();
+
+    $('#recipe').on('click',function(){
+        var recipes = $('#recipe').val();
+        requestRecipes(recipes);
     });
 });
-function choose(foods){
-    switch(parseInt(foods)){
-        case 1:
-            requestCreps(); 
-            requestApi();
-            break;
-        case 2:
-            requestAvocado();
-            requestApi();
-            break;
-    }
-}
 
-//request api Toek Kalok
-function requestAvocado(){
-    $.ajax({
-        dataType: "json",
-        url: getUrl(),
-        success: function(data){
-            var results = "";
-            data.recipes.forEach(element => {
-                if(element.id == 0){
-                    results += `    
-                    <div class="col-lg-6 " id="avocado">
-                        <img src="${element.iconUrl}" class="img-fluid float-right" width="80">
-                        <h3 class="float-right">${element.name}</h3>
-                    </div>
-                    `;
-                }
-            });
-            $('#result').html(results);
-        },
-    
-    });
-}
-// request api creps
-var requestCreps = () => {
-    $.ajax({
-        dataType: "json",
-        url: getUrl(),
-        success: function(data){
-            var results = "";
-            data.recipes.forEach(element => {
-                if(element.id == 1){
-                    results += `    
-                    <div class="col-lg-6 " id="avocado">
-                        <img src="${element.iconUrl}" class="img-fluid float-right" width="80">
-                        <h3 class="float-right">${element.name}</h3>
-                    </div>
-                    `;
-                }
-            });
-            $('#result').html(results);
-        },
-    
-    });
-}
 //get url
 function getUrl(){
     var url = "https://raw.githubusercontent.com/radytrainer/test-api/master/test.json";
     return url;
 }
-//request api of ingredients
-var requestApi = () => {
+
+function requestApiName(){
     $.ajax({
         dataType: "json",
         url: getUrl(),
-        success:  function(myData){
-            myData.recipes.forEach(element => {
-                if(element.id == 0){
-                    getIngredient(element.ingredients);
-                }
-        });
-    }
-        
+        success: (data) => chooseRecipe(data.recipes),
+        error: () => console.log("error"),                  
     });
 }
-
-var getIngredient = (ing) => {
-    ing.forEach(item => {
-        computeHTML(item);
+var allData = [];
+function chooseRecipe(recipe){
+    allData = recipe;
+    var option = "";
+    recipe.forEach(element => {
+        option += `<option value="${element.id}">${element.name}</option>`;
     });
+    $('#recipe').append(option);
 }
-//compute to html 
-function computeHTML(display){
-    var compute = "";
-    compute +=`
-        <tr >
 
-        <td><img src="${display.iconUrl}" class="img-fluid" width="50"></td>
-        <td>${display.name}</td>
-        <td>${display.quantity}</td>
-        <td>${display.unit}</td>
-
-        </tr>
+//request api 
+function requestRecipes(recipes){
+            
+    allData.forEach(element => {
+        if(element.id == recipes){
+             recipe(element.name, element.iconUrl);
+             requestIngredient(element.ingredients);
+        }
+    });
+    
+}
+function recipe(name, image){
+    var results = "";
+    results += `    
+        <div class="col-lg-6 " id="avocado">
+        <img src="${image}" class="img-fluid float-right" width="150">
+        <h3 class="float-right mr-3">${name}</h3>
+        </div>
     `;
-    printOut(compute);
+    $('#result').html(results);
 }
-// print out
-
-printOut = (out) => {
-    $("#ingredient").append(out);
+//get ingredients from api
+function requestIngredient(ing){
+     var ingre = ""; 
+    ing.forEach(element => {
+      ingre += `
+            <tr>
+            <td><img src="${element.iconUrl}" class="img-fluid" width="50"></td>
+            <td>${element.quantity}</td>
+            <td>${element.unit[0]}</td>
+            <td>${element.name}</td>
+            </tr>
+      `;
+    });
+    $('#ingredient').html(ingre);
 }
