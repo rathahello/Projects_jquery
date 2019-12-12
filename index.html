@@ -8,6 +8,15 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <title>My Projects</title>
 </head>
+<style>
+    #line{
+        border-left: 2px solid;
+        position: absolute;
+        height: 350px;
+        left: 40%;
+
+    }
+</style>
 
 <body>
     <div class="container mt-5">
@@ -26,7 +35,7 @@
             <div class="col-3"></div>
         </div>
     </div>
-
+<!-- result of recipe -->
     <div class="container mt-3">
         <div class="row" id="result">
 
@@ -56,20 +65,22 @@
 
     <div class="container">
         <div class="row">
-            <div class="col-4">
-                <h5 class="center">Ingredients</h5>
+            <div class="col-5">
+                    <h5 class="text_ing text-center">Ingredient</h5>
                 <br>
-                <table class="table" id="ingredient">
+                <table class="table table-borderless" id="ingredient">
 
                 </table>
+            </div>
+
+            <div class="col-2 center" id="line">
+            </div>
+
+            <div class="col-5" id="step">
+                <!-- <h5 class="text_int text-center">Ingredient</h5> -->
 
             </div>
-            <div class="col-4">
-                <hr />
-            </div>
-            <div class="col-4" id="step">
-                <h5 class="center">Instructions</h5>
-            </div>
+
         </div>
     </div>
 

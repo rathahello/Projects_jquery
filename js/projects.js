@@ -1,7 +1,10 @@
 $(document).ready(function(){
-    requestApiName();
-
-    $('#recipe').on('click',function(){
+    $("#line").hide();
+    $(".text_ing").hide();
+    requestApiName(); 
+    $('#recipe').on('change',function(){
+        $("#line").show();
+        $(".text_ing").show();
         var recipes = $('#recipe').val();
         requestRecipes(recipes);
     });
@@ -38,17 +41,20 @@ function requestRecipes(recipes){
         if(element.id == recipes){
              recipe(element.name, element.iconUrl);
              requestIngredient(element.ingredients);
+             getInstruction(element.instructions);
         }
     });
     
 }
 function recipe(name, image){
     var results = "";
-    results += `    
-        <div class="col-lg-6 " id="avocado">
+    results += `   
+    <div class="container">
+        <div class="col-8 " id="avocado">
         <img src="${image}" class="img-fluid float-right" width="150">
         <h3 class="float-right mr-3">${name}</h3>
         </div>
+    </div> 
     `;
     $('#result').html(results);
 }
@@ -66,4 +72,16 @@ function requestIngredient(ing){
       `;
     });
     $('#ingredient').html(ingre);
+}
+//get instruction from api
+function getInstruction(instroct){
+    var instruction = "";
+    var int = instroct.split("<step>");
+    for(var i=1;i<int.length;i++){
+        instruction += `
+            <h5 class="text-primary">Step:${i}</h5>
+            <p>${instroct}</p>
+        `;
+    }
+    $("#step").html(instruction);
 }
