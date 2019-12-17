@@ -1,31 +1,38 @@
-$(document).ready(function(){
-    $("#line").hide();
-    $(".text_ing").hide();
-    requestApiName(); 
-    $('#recipe').on('change',function(){
-        $("#line").show();
-        $(".text_ing").show();
+$(document).ready(function () {
+    $("#text_line").hide();
+    $("#calculation").hide();
+    requestApiName();
+
+    $('#recipe').on('change', function () {
+        $("#text_line").show();
+        $("#calculation").show();
         var recipes = $('#recipe').val();
         requestRecipes(recipes);
     });
+
+    $("#add").on('click', function(){
+        var calculater = $("#add").val();
+        // add(calculater);
+    });
+
 });
 
 //get url
-function getUrl(){
+function getUrl() {
     var url = "https://raw.githubusercontent.com/radytrainer/test-api/master/test.json";
     return url;
 }
 
-function requestApiName(){
+function requestApiName() {
     $.ajax({
         dataType: "json",
         url: getUrl(),
         success: (data) => chooseRecipe(data.recipes),
-        error: () => console.log("error"),                  
+        error: () => console.log("error"),
     });
 }
 var allData = [];
-function chooseRecipe(recipe){
+function chooseRecipe(recipe) {
     allData = recipe;
     var option = "";
     recipe.forEach(element => {
@@ -35,18 +42,21 @@ function chooseRecipe(recipe){
 }
 
 //request api 
-function requestRecipes(recipes){
-            
+function requestRecipes(recipes) {
+
     allData.forEach(element => {
-        if(element.id == recipes){
-             recipe(element.name, element.iconUrl);
-             requestIngredient(element.ingredients);
-             getInstruction(element.instructions);
+        if (element.id == recipes) {
+            recipe(element.name, element.iconUrl);
+            requestIngredient(element.ingredients);
+            getInstruction(element.instructions);
+            calculate(element.nbGuests);
+            // add(element.id);
         }
     });
-    
+
 }
-function recipe(name, image){
+
+function recipe(name, image) {
     var results = "";
     results += `   
     <div class="container">
@@ -58,11 +68,12 @@ function recipe(name, image){
     `;
     $('#result').html(results);
 }
+
 //get ingredients from api
-function requestIngredient(ing){
-     var ingre = ""; 
+function requestIngredient(ing) {
+    var ingre = "";
     ing.forEach(element => {
-      ingre += `
+        ingre += `
             <tr>
             <td><img src="${element.iconUrl}" class="img-fluid" width="50"></td>
             <td>${element.quantity}</td>
@@ -72,16 +83,41 @@ function requestIngredient(ing){
       `;
     });
     $('#ingredient').html(ingre);
+    $('#text_ing').html("Ingredients");
 }
+
 //get instruction from api
-function getInstruction(instroct){
+function getInstruction(instroct) {
     var instruction = "";
     var int = instroct.split("<step>");
-    for(var i=1;i<int.length;i++){
+    for (var i = 1; i < int.length; i++) {
         instruction += `
-            <h5 class="text-primary">Step:${i}</h5>
-            <p>${instroct}</p>
+        <h5 class="text-primary">Step:${i}</h5>
+        <p>${int[i]}</p>
         `;
+        $('#step').html(instruction);
     }
-    $("#step").html(instruction);
+    $('#inst').html("instructions");
 }
+
+// get id from api to input
+function calculate(id) {
+    var calculator = "";
+    calculator += `
+        <input type="number" class="form-control text-center" id="number" disabled value="${id}">
+        `;
+    $('#number').html(calculator);
+}
+
+// function add(incress){
+//     var incressNumber = parseInt(incress)+ 1;
+//     console.log(incressNumber);
+//     // allData.forEach(element => {
+//     //     console.log(element.incressNumber);
+
+//     // })
+//     // if(incressNumber<=15 && incressNumber > 0){
+//         // $("#number").val(incressNumber);
+       
+//     // }
+// }

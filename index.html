@@ -43,30 +43,30 @@
 
     </div>
 
-    <div class="container mt-5">
+    <div class="container mt-5" id="calculation">
         <div class="row">
-            <div class="col-4"></div>
-            <div class="col-4">
+            <div class="col-3"></div>
+            <div class="col-6">
                 <div class="input-group mb-3">
                     <h4 class="mr-3">Number of persons</h4>
                     <div class="input-group-prepend">
                         <button class="btn btn-primary" id="previous" type="button">-</button>
+                        <div id="number"></div>
                     </div>
-                    <input type="number" class="form-control text-center" id="number" disabled value="0" placeholder="">
                     <div class="input-group-append">
                         <button class="btn btn-success" id="add" type="submit">+</button>
                     </div>
                 </div>
             </div>
-            <div class="col-4"></div>
+            <div class="col-3"></div>
         </div>
     </div>
 
 
-    <div class="container">
+    <div class="container" id="text_line">
         <div class="row">
             <div class="col-5">
-                    <h5 class="text_ing text-center">Ingredient</h5>
+                    <h4 class="text-center" id="text_ing"></h4>
                 <br>
                 <table class="table table-borderless" id="ingredient">
 
@@ -76,8 +76,9 @@
             <div class="col-2 center" id="line">
             </div>
 
-            <div class="col-5" id="step">
-                <!-- <h5 class="text_int text-center">Ingredient</h5> -->
+            <div class="col-5">
+                <h4 class="text-center" id="inst"></h4>
+                <table class="table table-borderless" id="step"></table>
 
             </div>
 
