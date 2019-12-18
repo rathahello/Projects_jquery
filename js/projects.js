@@ -9,13 +9,56 @@ $(document).ready(function () {
         var recipes = $('#recipe').val();
         requestRecipes(recipes);
     });
-
-    $("#add").on('click', function(){
-        var calculater = $("#add").val();
-        // add(calculater);
+    // click for incress number
+    $("#add").on('click', function () {
+        var calculater = $("#getNumber").val();
+        incress(calculater);
+    });
+    //click for decress number 
+    $("#previous").on('click', function () {
+        var previous = $("#getNumber").val();
+        decrement(previous);
     });
 
 });
+
+//incress number 
+function incress(inNumber){
+    var incressNumbers = parseInt(inNumber) + 1;
+    if(incressNumbers <= 15){
+        $("#getNumber").val(incressNumbers);  
+        addNumber($("#getNumber").val());  
+    }
+}
+//decress number
+function decrement(deNumber){
+    var decressNumbers = parseInt(deNumber) - 1;
+    if(decressNumbers >= 1){
+        $("#getNumber").val(decressNumbers);  
+        addNumber($("#getNumber").val());  
+    }
+}
+// calculating of ingredient
+function addNumber(output){
+    var quantities;
+    var newQuantity;
+    var getResult = "";
+    getQuantity.ingredients.forEach(item => {
+        quantities = item.quantity/oldGuests;
+        newQuantity = quantities*output;
+        getResult += `
+
+            <tr>
+            <td><img src="${item.iconUrl}" class="img-fluid" width="50"></td>
+            <td id='quantity'>${newQuantity}</td>
+            <td>${item.unit[0]}</td>
+            <td>${item.name}</td>
+            </tr>
+
+        `;
+        $("#ingredient").html(getResult);
+    });
+}
 
 //get url
 function getUrl() {
@@ -23,6 +66,7 @@ function getUrl() {
     return url;
 }
 
+// choose recipe name
 function requestApiName() {
     $.ajax({
         dataType: "json",
@@ -31,6 +75,7 @@ function requestApiName() {
         error: () => console.log("error"),
     });
 }
+
 var allData = [];
 function chooseRecipe(recipe) {
     allData = recipe;
@@ -43,19 +88,20 @@ function chooseRecipe(recipe) {
 
 //request api 
 function requestRecipes(recipes) {
-
     allData.forEach(element => {
         if (element.id == recipes) {
             recipe(element.name, element.iconUrl);
             requestIngredient(element.ingredients);
             getInstruction(element.instructions);
-            calculate(element.nbGuests);
-            // add(element.id);
+            getIdToInput(element.nbGuests);
+
+            getQuantity = element;
+            oldGuests = element.nbGuests;
         }
     });
 
 }
-
+// request recipe name and image
 function recipe(name, image) {
     var results = "";
     results += `   
@@ -100,24 +146,11 @@ function getInstruction(instroct) {
     $('#inst').html("instructions");
 }
 
-// get id from api to input
-function calculate(id) {
-    var calculator = "";
-    calculator += `
-        <input type="number" class="form-control text-center" id="number" disabled value="${id}">
+// get nbGuests from api to input
+function getIdToInput(id) {
+    var guests = "";
+    guests += `
+        <input type="number" id="getNumber" class="form-control text-center" disabled value="${id}">
         `;
-    $('#number').html(calculator);
+    $('#number').html(guests);
 }
-
-// function add(incress){
-//     var incressNumber = parseInt(incress)+ 1;
-//     console.log(incressNumber);
-//     // allData.forEach(element => {
-//     //     console.log(element.incressNumber);
-
-//     // })
-//     // if(incressNumber<=15 && incressNumber > 0){
-//         // $("#number").val(incressNumber);
-       
-//     // }
-// }
