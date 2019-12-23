@@ -105,12 +105,9 @@ function requestRecipes(recipes) {
 function recipe(name, image) {
     var results = "";
     results += `   
-    <div class="container">
-        <div class="col-8 " id="avocado">
-        <img src="${image}" class="img-fluid float-right" width="150">
+        <img src="${image}" class="img-fluid float-right rounded-circle" width="60%" height="60%">
         <h3 class="float-right mr-3">${name}</h3>
-        </div>
-    </div> 
+    
     `;
     $('#result').html(results);
 }

@@ -1,0 +1,17 @@
+#line {
+    border-left: 2px solid;
+    position: absolute;
+    height: 350px;
+    left: 40%;
+
+}
+body{
+    background-image: url('');
+    background-size: cover; 
+    
+
+}
+.card{
+    background-image: url("https://rfsdelivers.com/media/zoo/images/04-01-Healthy-Food_86c7af8860836aa36911d8730cda0856.jpg");
+    background-size: cover; 
+}

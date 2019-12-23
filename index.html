@@ -5,39 +5,42 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <title>My Projects</title>
 </head>
-<style>
-    #line {
-        border-left: 2px solid;
-        position: absolute;
-        height: 350px;
-        left: 40%;
-
-    }
-</style>
 
 <body>
+
     <div class="container mt-5">
         <div class="row">
             <div class="col-3"></div>
             <div class="col-6">
-
-                <form action="#">
-                    <div class="form-group">
-                        <select id="recipe" class="form-control">
-                            <option value="" disabled selected>choose recipe...</option>
-                        </select>
+                <div class="card alert-success">
+                    <div class="card-header">
+                        <form action="#">
+                            <div class="form-group">
+                                <select id="recipe" class="form-control">
+                                    <option value="" disabled selected>choose recipe...</option>
+                                </select>
+                            </div>
+                        </form>
                     </div>
-                </form>
+                </div>
             </div>
             <div class="col-3"></div>
         </div>
     </div>
     <!-- result of recipe -->
     <div class="container mt-3">
-        <div class="row" id="result">
+        <div class="row">
+            <div class="col-3"></div>
+            <div class="col-5">
+                <form action="" id="result">
+
+                </form>
+            </div>
+            <div class="col-4"></div>
 
         </div>
 
@@ -47,14 +50,18 @@
         <div class="row">
             <div class="col-3"></div>
             <div class="col-6">
-                <div class="input-group mb-3">
-                    <h4 class="mr-3">Number of persons</h4>
-                    <div class="input-group-prepend">
-                        <button class="btn btn-primary" id="previous" type="button">-</button>
-                        <div id="number"></div>
-                    </div>
-                    <div class="input-group-append">
-                        <button class="btn btn-success" id="add" type="submit">+</button>
+                <div class="card shadow-lg">
+                    <div class="card-header alert-info">
+                        <div class="input-group mb-3">
+                            <h4 class="mr-3">Number of persons</h4>
+                            <div class="input-group-prepend">
+                                <button class="btn btn-primary" id="previous" type="button">-</button>
+                                <div id="number"></div>
+                            </div>
+                            <div class="input-group-append">
+                                <button class="btn btn-success" id="add" type="submit">+</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -64,7 +71,7 @@
 
     <br>
 
-    <div class="container" id="text_line">
+    <div class="container jumbotron alert-info" id="text_line">
         <div class="row">
             <div class="col-5">
                 <h4 class="text-center" id="text_ing"></h4>
