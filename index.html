@@ -7,16 +7,18 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <title>My Projects</title>
 </head>
 
 <body>
-
-    <div class="container mt-5">
+<nav role="navigation">
+    <div class="nav-wrapper container">
         <div class="row">
             <div class="col-3"></div>
             <div class="col-6">
-                <div class="card alert-success">
+                <div class="card alert-success" id="selectRecipe">
                     <div class="card-header">
                         <form action="#">
                             <div class="form-group">
@@ -31,32 +33,28 @@
             <div class="col-3"></div>
         </div>
     </div>
+</nav>
+    <h2 class="text-center text-success"><b>WELCOME TO BEAUTIFUL FOODS</b></h2>
     <!-- result of recipe -->
-    <div class="container mt-3">
-        <div class="row">
-            <div class="col-3"></div>
-            <div class="col-5">
-                <form action="" id="result">
-
-                </form>
-            </div>
-            <div class="col-4"></div>
-
-        </div>
-
-    </div>
-
     <div class="container mt-5" id="calculation">
         <div class="row">
-            <div class="col-3"></div>
             <div class="col-6">
-                <div class="card shadow-lg">
-                    <div class="card-header alert-info">
+                <div class="card">
+                    <div class="card-body">
+                        <form action="" id="result">
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="card">
+                    <div class="card-header">
                         <div class="input-group mb-3">
-                            <h4 class="mr-3">Number of persons</h4>
+                            <h4 class="mb-5 text-success"><b>Number of persons</b></h4>
+
                             <div class="input-group-prepend">
                                 <button class="btn btn-primary" id="previous" type="button">-</button>
-                                <div id="number"></div>
+                                <div id="number" class="text-success" width="20"></div>
                             </div>
                             <div class="input-group-append">
                                 <button class="btn btn-success" id="add" type="submit">+</button>
@@ -65,26 +63,21 @@
                     </div>
                 </div>
             </div>
-            <div class="col-3"></div>
         </div>
     </div>
 
     <br>
 
-    <div class="container jumbotron alert-info" id="text_line">
+    <div class="container" id="text_line">
         <div class="row">
-            <div class="col-5">
+            <div class="col-6 alert-info">
                 <h4 class="text-center" id="text_ing"></h4>
                 <br>
-                <table class="table table-borderless" id="ingredient">
+                <table class="table table-borderless alert-primary" id="ingredient">
 
                 </table>
             </div>
-
-            <div class="col-2 center" id="line">
-            </div>
-
-            <div class="col-5">
+            <div class="col-6 alert-success">
                 <h4 class="text-center" id="inst"></h4>
                 <table class="table table-borderless" id="step"></table>
 
@@ -92,7 +85,14 @@
 
         </div>
     </div>
+    <br>
 
+    <footer class="footer">
+        <marquee scrollamount="10" loop="infinite" style="padding:5.5px">
+            <h4 class="text-danger"><b>Welcome with beautiful foods on holiday or party with your family and your friend!!!
+                </b></h4>
+        </marquee>
+    </footer>
 
     <script src="js/jquery-3.4.1.min.js"></script>
     <script src="js/projects.js"></script>

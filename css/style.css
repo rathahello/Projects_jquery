@@ -1,17 +1,28 @@
-#line {
-    border-left: 2px solid;
-    position: absolute;
-    height: 350px;
-    left: 40%;
 
-}
 body{
-    background-image: url('');
+    background-image: url('image/1.jpg');
     background-size: cover; 
-    
-
 }
-.card{
-    background-image: url("https://rfsdelivers.com/media/zoo/images/04-01-Healthy-Food_86c7af8860836aa36911d8730cda0856.jpg");
+#selectRecipe{
+    background-image: url("image/2.jpg");
     background-size: cover; 
+}
+footer{
+    background-image: url("image/2.jpg");
+    background-size: cover; 
+    padding: 15px;
+}
+nav{
+    background-image: url("image/2.jpg");
+    background-size: cover; 
+}
+#result{
+    font-family: serif;
+    text-align: center;
+}
+h4{
+    font-family: serif;
+}
+h5{
+    font-family: serif;
 }
